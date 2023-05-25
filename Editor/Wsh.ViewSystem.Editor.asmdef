@@ -1,0 +1,18 @@
+{
+    "name": "Wsh.ViewSystem.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5b1acee4524fa7844aed3681e036154f"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

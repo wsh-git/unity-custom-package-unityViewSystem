@@ -1,0 +1,16 @@
+{
+    "name": "Wsh.ViewSystem",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a5608bbae31330d45b61e3ffb4a451e5"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

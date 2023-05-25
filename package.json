@@ -1,0 +1,20 @@
+{
+  "name": "com.wshunity.viewsystem",
+  "displayName": "Wsh Unity ViewSystem",
+  "version": "0.0.1",
+  "unity": "2017.2",
+  "keywords": [
+    "View System"
+  ],
+  "description": "This is a very base ui system framework.\n    依赖项:\n        https://github.com/wsh-git/unity-custom-package-unityUIAnimation.git",
+  "repository": {
+    "url": "https://github.com/wsh-git/unity-custom-package-unityViewSystem.git",
+    "type": "git",
+    "revision": "9d824e3aeca574022eff896b9c751097dadd0619"
+  },
+  "author": {
+    "name": "wshunity",
+    "email": "",
+    "url": ""
+  }
+}
