@@ -10,6 +10,7 @@ namespace Wsh.View {
         public string className; //"Wsh.View.ViewGameStartPage"
         public string prefabPath;
         public float debugMaskAlpha;
+        public bool canCloseByEsc;
 
         public Type GetClassType() {
             //return Type.GetType(className);

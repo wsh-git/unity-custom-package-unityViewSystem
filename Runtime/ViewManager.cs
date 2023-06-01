@@ -94,6 +94,13 @@ namespace Wsh.View {
             return null;
         }
 
+        public BaseView GetLatestView() {
+            if(m_viewList.Count > 0) {
+                return m_viewList[m_viewList.Count-1];
+            }
+            return null;
+        }
+
         private void RemoveView(BaseView view) {
             int removeIndex = -1;
             for(int i = 0; i < m_viewList.Count; i++) {
@@ -103,6 +110,7 @@ namespace Wsh.View {
             }
             if(removeIndex != -1) { m_viewList.RemoveAt(removeIndex); }
         }
+
         private void DestroyView(BaseView view) {
             RemoveView(view);
             Destroy(view.gameObject);
@@ -194,6 +202,10 @@ namespace Wsh.View {
                 SetEventSystemLockState(true);
             }
             m_inputLockNumber++;
+        }
+
+        public bool IsLockInput() {
+            return m_inputLockNumber > 0;
         }
     }
 }

@@ -15,8 +15,8 @@ namespace Wsh.View {
         public event Action OnAfterAnimationCloseEvent;
 
         public string ViewName { get { return m_viewName; } }
-
         public float OpenTime { get { return m_openTime; } }
+        public bool CanCloseByEsc { get { return m_viewDefine.canCloseByEsc;} }
 
         private string m_viewName;
         private float m_openTime;
