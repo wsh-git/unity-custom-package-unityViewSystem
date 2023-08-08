@@ -18,6 +18,7 @@ namespace Wsh.View {
         [SerializeField]private RectTransform m_canvasRectTransform;
         [SerializeField]private GameObject m_viewRoot;
         [SerializeField]private GameObject m_msgRoot;
+        [SerializeField]private GameObject m_loadingRoot;
         [SerializeField]private Text m_textGreenMsg;
         [SerializeField]private Text m_textRedMsg;
         [SerializeField]private Image m_imageMaskRaycast;
@@ -123,7 +124,8 @@ namespace Wsh.View {
         public void ShowViewAsync<T>(Action<T> onComplete, params object[] pm) where T: BaseView {
             Type type = typeof(T);
             ViewConfigContentClass viewDefine = GetViewDefine(type);
-            InstantiateAsyncFunc(viewDefine.prefabPath, m_viewRoot, go => {
+            var root = viewDefine.isLoading ? m_loadingRoot : m_viewRoot;
+            InstantiateAsyncFunc(viewDefine.prefabPath, root, go => {
                 T v = go.AddComponent<T>() as T;
                 v.OnStart(this, viewDefine);
                 v.OnInit(pm);
@@ -135,7 +137,8 @@ namespace Wsh.View {
         public T ShowView<T>(GameObject prefab, params object[] pm) where T: BaseView {
             Type type = typeof(T);
             ViewConfigContentClass viewDefine = GetViewDefine(type);
-            var go = InstantiateFunc(prefab, m_viewRoot);
+            var root = viewDefine.isLoading ? m_loadingRoot : m_viewRoot;
+            var go = InstantiateFunc(prefab, root);
             T v = go.AddComponent<T>() as T;
             v.OnStart(this, viewDefine);
             v.OnInit(pm);

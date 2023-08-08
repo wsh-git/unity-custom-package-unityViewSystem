@@ -9,6 +9,7 @@ namespace Wsh.View {
         public string viewName;
         public string className; //"Wsh.View.ViewGameStartPage"
         public string prefabPath;
+        public bool isLoading;
         public float debugMaskAlpha;
         public bool canCloseByEsc;
 
