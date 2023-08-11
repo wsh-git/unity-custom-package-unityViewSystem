@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Wsh.UIAnimation;
 
 namespace Wsh.View {
 
@@ -19,6 +20,8 @@ namespace Wsh.View {
         [SerializeField]private GameObject m_viewRoot;
         [SerializeField]private GameObject m_msgRoot;
         [SerializeField]private GameObject m_loadingRoot;
+        [SerializeField]private UIAnimationGroupPlayer m_greenMsgAnimationPlayer;
+        [SerializeField]private UIAnimationGroupPlayer m_redMsgAnimationPlayer;
         [SerializeField]private Text m_textGreenMsg;
         [SerializeField]private Text m_textRedMsg;
         [SerializeField]private Image m_imageMaskRaycast;
@@ -28,9 +31,6 @@ namespace Wsh.View {
         private int m_inputLockNumber;
         private Dictionary<Type, ViewConfigContentClass> m_viewConfigDic;
         private bool m_isDarkMode;
-
-        private Coroutine m_greenMsgCoroutine;
-        private Coroutine m_redMsgCoroutine;
 
         public static void InitAsync(string uiRootPrefabPath, ViewConfigDefine viewConfigDefine, Action<string, GameObject, Action<GameObject>> instantiateAsyncFunc, Func<GameObject, GameObject, GameObject> instantiateFunc, Action<ViewManager> onComplete) {
             instantiateAsyncFunc(uiRootPrefabPath, null, root => {
@@ -146,32 +146,17 @@ namespace Wsh.View {
             return v;
         }
 
+        private void SetMessage(UIAnimationGroupPlayer animationPlayer, Text textMsg, string msg) {
+            textMsg.text = msg;
+            animationPlayer.Play();
+        }
+
         public void GreenMessage(string msg) {
-            if(m_greenMsgCoroutine != null) {
-                StopCoroutine(m_greenMsgCoroutine);
-            }
-            m_greenMsgCoroutine = StartCoroutine(IEShowGreenMessage(msg));
+            SetMessage(m_greenMsgAnimationPlayer, m_textGreenMsg, msg);
         }
-
-        IEnumerator IEShowGreenMessage(string msg) {
-            m_textGreenMsg.text = msg;
-            m_textGreenMsg.gameObject.SetActive(true);
-            yield return new WaitForSeconds(1);
-            m_textGreenMsg.gameObject.SetActive(false);
-        }
-
+        
         public void RedMessage(string msg) {
-            if(m_redMsgCoroutine != null) {
-                StopCoroutine(m_redMsgCoroutine);
-            }
-            m_redMsgCoroutine = StartCoroutine(IEShowRedMessage(msg));
-        }
-
-        IEnumerator IEShowRedMessage(string msg) {
-            m_textRedMsg.text = msg;
-            m_textRedMsg.gameObject.SetActive(true);
-            yield return new WaitForSeconds(1);
-            m_textRedMsg.gameObject.SetActive(false);
+            SetMessage(m_redMsgAnimationPlayer, m_textRedMsg, msg);
         }
 
         public void SetDarkMode(bool isDarkMode) {
