@@ -32,9 +32,9 @@ namespace Wsh.View {
         private Dictionary<Type, ViewConfigContentClass> m_viewConfigDic;
         private bool m_isDarkMode;
 
-        public static void InitAsync(string uiRootPrefabPath, ViewConfigDefine viewConfigDefine, Action<string, GameObject, Action<GameObject>> instantiateAsyncFunc, Func<GameObject, GameObject, GameObject> instantiateFunc, Action<ViewManager> onComplete) {
+        public static void InitAsync(string uiRootPrefabPath, Vector3 rootPosition, ViewConfigDefine viewConfigDefine, Action<string, GameObject, Action<GameObject>> instantiateAsyncFunc, Func<GameObject, GameObject, GameObject> instantiateFunc, Action<ViewManager> onComplete) {
             instantiateAsyncFunc(uiRootPrefabPath, null, root => {
-                root.transform.position = new Vector3(5000, 0, 0);
+                root.transform.position = rootPosition;
                 ViewManager viewManger = root.GetComponent<ViewManager>();
                 viewManger.Init(viewConfigDefine, instantiateAsyncFunc, instantiateFunc);
                 onComplete?.Invoke(viewManger);
