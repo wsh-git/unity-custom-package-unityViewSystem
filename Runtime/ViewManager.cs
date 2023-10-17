@@ -126,7 +126,10 @@ namespace Wsh.View {
             ViewConfigContentClass viewDefine = GetViewDefine(type);
             var root = viewDefine.isLoading ? m_loadingRoot : m_viewRoot;
             InstantiateAsyncFunc(viewDefine.prefabPath, root, go => {
-                T v = go.AddComponent<T>() as T;
+                T v = go.GetComponent<T>();
+                if(v == null) {
+                    v = go.AddComponent<T>() as T;
+                }
                 v.OnStart(this, viewDefine);
                 v.OnInit(pm);
                 m_viewList.Add(v);
@@ -139,7 +142,10 @@ namespace Wsh.View {
             ViewConfigContentClass viewDefine = GetViewDefine(type);
             var root = viewDefine.isLoading ? m_loadingRoot : m_viewRoot;
             var go = InstantiateFunc(prefab, root);
-            T v = go.AddComponent<T>() as T;
+            T v = go.GetComponent<T>();
+            if(v == null) {
+                v = go.AddComponent<T>() as T;
+            }
             v.OnStart(this, viewDefine);
             v.OnInit(pm);
             m_viewList.Add(v);
